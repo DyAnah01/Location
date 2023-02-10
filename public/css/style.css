@@ -1,0 +1,16 @@
+*{
+    margin: auto;
+    padding-top: 3px;
+}
+
+
+ header{
+    background-image: url("/images/audiRsq8.jpeg");
+    width: 75rem;
+    height: 45rem;
+   
+} 
+
+h1{
+    text-align: center;
+}
