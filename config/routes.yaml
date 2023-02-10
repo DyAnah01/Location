@@ -5,6 +5,7 @@ controllers:
 # accueil:
 #     path: /
 #     controller: App\Controller\MainController::accueil
-afficher:
-    path: afficher
-    controller: App\Controller\AgencesController::agences_afficher
+
+# showAdd:
+#     path: /agences/showAdd
+#     controller: App\Controller\AgencesController::agences_afficher
