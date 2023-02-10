@@ -18,7 +18,7 @@ class AgencesController extends AbstractController
     }
 
 
-    #[Route('/agences', name:"category_afficher")]
+    #[Route('/agences', name:"afficher")]
     public function agences_afficher(AgencesRepository $repoAgences)
     {
         $agences = $repoAgences->findAll();
