@@ -1,3 +1,8 @@
 controllers:
     resource: ../src/Controller/
     type: attribute
+
+
+vehicule:
+    path: /vehicule
+    controller: App\Controller\VehiculeController::index
