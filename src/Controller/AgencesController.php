@@ -27,13 +27,9 @@ class AgencesController extends AbstractController
             $manager->persist($ag);
             $manager->flush();
 
-            $this->addFlash('success', "L'Agence n°". $ag->getId() . "a bien été ajoutée");
+            $this->addFlash('success', "L'Agence n° ". $ag->getId() . " a bien été ajoutée");
             return $this->redirectToRoute('agences/index.html.twig');
         }
-
-
-
-
         return $this->render('agences/index.html.twig', [
             'controller_name' => 'AgencesController',
             "agences" => $agences,
@@ -43,8 +39,12 @@ class AgencesController extends AbstractController
 
 
 
-    // #[Route('/agences/showAdd', name: "showAdd")]
-    // public function agences_ajouter()
+    #[Route('/agences/update/{id}', name: "update")]
+    public function agences_modifier()
+    {
+        
+
+    }
 
 
 }
