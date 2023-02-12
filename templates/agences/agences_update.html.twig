@@ -20,7 +20,7 @@
                     {{ form_row(formAgences.description) }}
                 </div>
                 <div class="col-md-10 mx-auto">
-                    {{ form_row(formAgences.photo) }}
+                    <img src="{{ form_row(formAgences.photo) }}" width="200" height="200" alt="photo Agences">   
                 </div>                
             </div>
 {#  #}
@@ -39,7 +39,7 @@
     
         <div class="row justify-content-center">
             <input type="submit" class="btn btn-success mt-3 col-md-6" value="Ajouter"> 
-            
+
         </div>
     
         {{ form_end(formAgences) }}
