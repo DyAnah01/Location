@@ -54,7 +54,7 @@ class AgencesController extends AbstractController
             return $this->redirectToRoute("update_agence");
         }
         return $this->render("agences/agences_update.html.twig",[
-            "formAgence" => $form->createView(),
+            "formAgences" => $form->createView(),
             "agence" => $agence
         ]);
 
