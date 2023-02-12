@@ -60,5 +60,16 @@ class AgencesController extends AbstractController
 
     }
 
+    #[Route('/agences/supprimer/{id}', name:'supprimer_agence')]
+    public function agences_delete(Agences $agences, EntityManagerInterface $manager)
+    {
+        $idAg = $agences->getId();
+        $manager->remove($agences);
+        $manager->flush();
+
+        $this->addFlash("success", "L'agence N° $idAg a été supprimé");
+        return $this->redirectToRoute("app_agences");
+
+    }
 
 }
