@@ -28,7 +28,7 @@ class AgencesController extends AbstractController
             $manager->flush();
 
             $this->addFlash('success', "L'Agence n° ". $ag->getId() . " a bien été ajoutée");
-            return $this->redirectToRoute('agences/index.html.twig');
+            return $this->redirectToRoute('app_agences');
         }
         return $this->render('agences/index.html.twig', [
             'controller_name' => 'AgencesController',
@@ -39,10 +39,24 @@ class AgencesController extends AbstractController
 
 
 
-    #[Route('/agences/update/{id}', name: "update")]
-    public function agences_modifier()
+    #[Route('/agences/update/{id}', name: "update_agence")]
+    public function agences_modifier($id, AgencesRepository $repoAg, Request $request, EntityManagerInterface $manager)
     {
-        
+        $agence = $repoAg->find($id);
+        $form = $this->createForm(AgencesType::class, $agence);
+        $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid())
+        {
+            $manager->persist($agence);
+            $manager->flush();
+
+            $this->addFlash("success", "L'agence N°" . $agence->getId() . " a bien été modifié");
+            return $this->redirectToRoute("update_agence");
+        }
+        return $this->render("agences/agences_update.html.twig",[
+            "formAgence" => $form->createView(),
+            "agence" => $agence
+        ]);
 
     }
 
