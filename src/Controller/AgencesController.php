@@ -51,7 +51,7 @@ class AgencesController extends AbstractController
             $manager->flush();
 
             $this->addFlash("success", "L'agence N°" . $agence->getId() . " a bien été modifié");
-            return $this->redirectToRoute("update_agence");
+            return $this->redirectToRoute("app_agences");
         }
         return $this->render("agences/agences_update.html.twig",[
             "formAgences" => $form->createView(),
