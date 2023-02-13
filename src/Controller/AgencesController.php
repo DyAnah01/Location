@@ -37,7 +37,13 @@ class AgencesController extends AbstractController
         ]);
     }
 
-
+    #[Route('/agences/detail/{id}', name: 'detail')]
+    public function agences_detail($id, AgencesRepository $repoA){
+        $agence = $repoA->find($id);
+        return $this->render("agences/agences_detail.html.twig",[
+            "ad" => $agence
+        ]);
+    }
 
     #[Route('/agences/update/{id}', name: "update_agence")]
     public function agences_modifier($id, AgencesRepository $repoAg, Request $request, EntityManagerInterface $manager)
