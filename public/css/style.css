@@ -4,13 +4,19 @@
 }
 
 
- header{
-    background-image: url("/images/audiRsq8.jpeg");
-    width: 75rem;
-    height: 45rem;
+header{
+    background-image: url("../images/b.jpg");
+    height: 30rem;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position-y: bottom;
    
 } 
 
 h1{
     text-align: center;
 }
+
+/* .container-fluid{
+ --bs-gutter-x: 0;   
+} */
