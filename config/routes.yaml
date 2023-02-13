@@ -1,11 +1,3 @@
 controllers:
     resource: ../src/Controller/
     type: attribute
-
-# accueil:
-#     path: /
-#     controller: App\Controller\MainController::accueil
-
-# showAdd:
-#     path: /agences/showAdd
-#     controller: App\Controller\AgencesController::agences_afficher

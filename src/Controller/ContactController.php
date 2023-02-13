@@ -11,11 +11,11 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ContactController extends AbstractController
 {
-    #[Route('/contact', name: 'app_contact')]
-    public function index(): Response
-    {
-      $form = 
-    }
+    // #[Route('/contact', name: 'app_contact')]
+    // public function index(): Response
+    // {
+    //   $form = 
+    // }
 }
 
 
