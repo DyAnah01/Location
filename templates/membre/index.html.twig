@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{parent ()}}| Gestion des membres{% endblock %}
+
+{% block h1 %}Gestion des membres{% endblock %}
+
+{% block body %}
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">id membre</th>
+      <th scope="col">pseudo</th>
+      <th scope="col">nom</th>
+      <th scope="col">prenom</th>
+      <th scope="col">email</th>
+      <th scope="col">civilite</th>
+      <th scope="col">statut</th>
+      <th scope="col">date_enregistrement</th>
+      <th scope="col">actions</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+    {% for value in membres %}
+    <tr>
+      <th scope="row">{{value.id}}</th>
+      <td>{{value.pseudo}}</td>
+      <td>{{value.nom}}</td>
+      <td>{{value.prenom}}</td>
+      <td>{{value.email}}</td>
+      <td>{{value.civilite}}</td>
+      <td>{{value.statut}}</td>
+      <td>{{value.date_enregistrement}}</td>
+      <td>{{value.actions}}</td>
+
+
+    {% endfor %}   
+  </tbody>
+</table>
+
+{% endblock %}
+
