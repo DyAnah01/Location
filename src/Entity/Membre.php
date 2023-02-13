@@ -3,8 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\MembreRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: MembreRepository::class)]
@@ -15,19 +14,19 @@ class Membre
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 20)]
+    #[ORM\Column(length: 255)]
     private ?string $pseudo = null;
 
-    #[ORM\Column(length: 60)]
+    #[ORM\Column(length: 255)]
     private ?string $mdp = null;
 
-    #[ORM\Column(length: 20)]
+    #[ORM\Column(length: 255)]
     private ?string $nom = null;
 
-    #[ORM\Column(length: 20)]
+    #[ORM\Column(length: 255)]
     private ?string $prenom = null;
 
-    #[ORM\Column(length: 50)]
+    #[ORM\Column(length: 255)]
     private ?string $email = null;
 
     #[ORM\Column(length: 255)]
@@ -36,8 +35,8 @@ class Membre
     #[ORM\Column]
     private ?int $statut = null;
 
-    #[ORM\Column]
-    private ?\DateTimeImmutable $date_enregistrement = null;
+    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    private ?\DateTimeInterface $date_enregistrement = null;
 
     public function getId(): ?int
     {
@@ -128,19 +127,15 @@ class Membre
         return $this;
     }
 
-    public function getDateEnregistrement(): ?\DateTimeImmutable
+    public function getDateEnregistrement(): ?\DateTimeInterface
     {
         return $this->date_enregistrement;
     }
 
-    public function setDateEnregistrement(\DateTimeImmutable $date_enregistrement): self
+    public function setDateEnregistrement(\DateTimeInterface $date_enregistrement): self
     {
         $this->date_enregistrement = $date_enregistrement;
 
         return $this;
     }
-
-
-
-
 }

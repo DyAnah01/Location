@@ -15,13 +15,13 @@ class Commande
     private ?int $id = null;
 
     #[ORM\ManyToOne]
-    private ?membre $id_membre = null;
+    private ?Membre $id_membre = null;
 
     #[ORM\ManyToOne]
-    private ?vehicule $id_vehicule = null;
+    private ?Vehicule $id_vehicule = null;
 
     #[ORM\ManyToOne]
-    private ?agences $id_agence = null;
+    private ?Agences $id_agence = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $date_heure_depart = null;
@@ -40,36 +40,36 @@ class Commande
         return $this->id;
     }
 
-    public function getIdMembre(): ?membre
+    public function getIdMembre(): ?Membre
     {
         return $this->id_membre;
     }
 
-    public function setIdMembre(?membre $id_membre): self
+    public function setIdMembre(?Membre $id_membre): self
     {
         $this->id_membre = $id_membre;
 
         return $this;
     }
 
-    public function getIdVehicule(): ?vehicule
+    public function getIdVehicule(): ?Vehicule
     {
         return $this->id_vehicule;
     }
 
-    public function setIdVehicule(?vehicule $id_vehicule): self
+    public function setIdVehicule(?Vehicule $id_vehicule): self
     {
         $this->id_vehicule = $id_vehicule;
 
         return $this;
     }
 
-    public function getIdAgence(): ?agences
+    public function getIdAgence(): ?Agences
     {
         return $this->id_agence;
     }
 
-    public function setIdAgence(?agences $id_agence): self
+    public function setIdAgence(?Agences $id_agence): self
     {
         $this->id_agence = $id_agence;
 

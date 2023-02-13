@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello VehiculeController!{% endblock %}
+
+{% block body %}
+<table class="table table-white table-striped table-hover text-center">
+    <thead class="bg-dark text-white">
+      <tr>
+        <th scope="col">vehicule</th>
+        <th scope="col">Agence</th>
+        <th scope="col">titre</th>
+        <th scope="col">marque</th>
+        <th scope="col">modele</th>
+        <th scope="col">description</th>
+        <th scope="col">photo</th>
+        <th scope="col">prix</th>
+        <th scope="col">actions</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+
+        </tr>
+    </tbody>
+</table>
+
+{{ form_start(formVehicule) }}
+<div class="col-md-10 mx-auto">
+    {{ form_row(formVehicule) }}
+</div>
+
+<div class="row justify-content-center">
+    <input type="submit" class="btn btn-success mt-3 col-md-6" value="Ajouter">
+</div>
+
+{{ form_end(formVehicule) }}
+
+{% endblock %}

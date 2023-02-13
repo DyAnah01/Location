@@ -3,8 +3,6 @@
 namespace App\Entity;
 
 use App\Repository\AgencesRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -19,10 +17,10 @@ class Agences
     #[ORM\Column(length: 200)]
     private ?string $titre = null;
 
-    #[ORM\Column(length: 50)]
+    #[ORM\Column(length: 255)]
     private ?string $adresse = null;
 
-    #[ORM\Column(length: 50)]
+    #[ORM\Column(length: 255)]
     private ?string $ville = null;
 
     #[ORM\Column]
@@ -31,16 +29,8 @@ class Agences
     #[ORM\Column(type: Types::TEXT)]
     private ?string $description = null;
 
-    #[ORM\Column(length: 200)]
+    #[ORM\Column(length: 255)]
     private ?string $photo = null;
-
-    #[ORM\OneToMany(mappedBy: 'id_agence', targetEntity: Vehicule::class)]
-    private Collection $vehicules;
-
-    public function __construct()
-    {
-        $this->vehicules = new ArrayCollection();
-    }
 
     public function getId(): ?int
     {
@@ -115,36 +105,6 @@ class Agences
     public function setPhoto(string $photo): self
     {
         $this->photo = $photo;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Vehicule>
-     */
-    public function getVehicules(): Collection
-    {
-        return $this->vehicules;
-    }
-
-    public function addVehicule(Vehicule $vehicule): self
-    {
-        if (!$this->vehicules->contains($vehicule)) {
-            $this->vehicules->add($vehicule);
-            $vehicule->setIdAgence($this);
-        }
-
-        return $this;
-    }
-
-    public function removeVehicule(Vehicule $vehicule): self
-    {
-        if ($this->vehicules->removeElement($vehicule)) {
-            // set the owning side to null (unless already changed)
-            if ($vehicule->getIdAgence() === $this) {
-                $vehicule->setIdAgence(null);
-            }
-        }
 
         return $this;
     }
