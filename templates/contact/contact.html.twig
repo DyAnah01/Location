@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <tbody>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Contact</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Message</th>
+                    <th scope="col">Action</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                {% for contact in contacts %}
+
+                    <tr>
+                        <td>{{ contact.id }}</td>
+                        <td>{{ contact.email }}</td>
+                        <td>{{ contact.message }}</td>
+                        <td>
+                            <a href="{{ path('delete_message', {'id' : contact.id} ) }}">
+                                <img src="{{ asset('images/delete.png')}}" alt="modif" width="35"></a>
+                        </td>
+
+
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    </tbody>
+
+{% endblock %}
