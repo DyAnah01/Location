@@ -6,29 +6,30 @@
 
 {% block body %}
     <div class="my-4">
-        {% if items %}
-            {% for value in items %}
+        {# {% if items %}
+            {% for value in items %} #}
                 <div class="card mb-3 my-2" style="max-width: 540px;">
                     <div class="row g-0">
                         <div class="col-md-4">
                             <img src="{#{{value.photoVehicule}}#}" class="img-fluid rounded-start mx-2" alt="Image voiture">
                         </div>
-                        <div class="col-md-8">
+                        <div class="col-md-8 mb-2">
                             <div class="card-body">
                             <h5 class="card-title">{#{{value.titreVehicule}}#}</h5>
                             <p class="card-text">{#{{value.descriptionVehicule}}#}</p>
                             <p class="card-text"><small class="text-muted">{#{{value.prix_journalier}}#}€ - {#{{value.titreAgence}}#}</small></p>
                             </div>
+                            <a href="#" class="btn btn-success">Réserver et payer</a>
                         </div>
                     </div>
                 </div>     
-            {% endfor %}
+            {# {% endfor %}
         {% else %}
             <h4 class="text-center mt-4 text-danger">
                 véhicule en voie de disparition
             </h4>
             
-        {% endif %}
+        {% endif %} #}
     </div>
 {% endblock %}
 
