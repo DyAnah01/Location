@@ -1,0 +1,42 @@
+{% extends "base.html.twig" %}
+{% block title %}
+    {{ parent() }}Detail{{ add.pseudo}} 
+
+{% endblock title %}
+    
+{% block body %}
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">pseudo</th>
+      <th scope="col">nom</th>
+      <th scope="col">prenome</th>
+      <th scope="col">email</th>
+      <th scope="col">civilite</th>
+      <th scope="col">statut</th>
+      <th scope="col">dateEnrgistrement</th>
+
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">{{add.ID}}</th>
+      <td>{{add.nom}}</td>
+      <td>{{add.prenom}}</td>
+      <td>{{add.email}}</td>
+      <td>{{add.civilite}}</td>
+      <td>{{add.statut}}</td>
+      <td>{{add.email}}</td>
+      <td>{{add.dateEnregistrement | date('d:m:Y')}}</td>
+
+    </tr>
+    </tr>
+  </tbody>
+</table>
+
+<div class="d-flex flex-row-reverse">
+    <a class="btn btn-success flex-end me-5" href="{{ path("app_membre") }}">Retour</a>
+</div>
+
+{% endblock body %}
