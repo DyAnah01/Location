@@ -26,14 +26,24 @@
         <tbody>
             {% for value in commande %}        
                 <tr>
-                    <th scope="row">1</th>
-                    <td> {{value.id}} </td>
-                    <td> {{value.id}} </td>
-                    <td> {{value.id}} </td>
-                    <td> {{value.id}} </td>
-                    <td> {{value.id}} </td>
-                    <td> {{value.id}} </td>
-                    <td> {{value.id}} </td>
+                    <th scope="row">{{value.id}}</th>
+                    <td> {{value.email}} </td>
+                    <td> 
+                        {{value.titre}} - 
+                        {{value.marque}}
+                    </td>
+                    <td>{#Agence#}
+                        <div class="d-flex flex-column">
+                            {{value.titreAgences}}
+                            <img src="{{value.photoAgences}}" alt="image de l'agence" width="200" height="200">
+                        </div> 
+                    </td>
+
+                    <td>{{value.id}} {#DateDépart#}</td>
+                    <td> {{value.id}} {#DateFin#}</td>
+                    <td> {{value.id}} {#Prix Total#}</td>
+                    <td> {{value.id}} </td> {#Date et heure d'enregistrement#}
+                    
                     <td class="w-25">
                             {# Détail #}
                             <div class="justify-content-around">

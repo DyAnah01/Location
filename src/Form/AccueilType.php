@@ -12,13 +12,13 @@ class AccueilType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('date_heure_depart')
-            ->add('date_heure_fin')
-            ->add('prix_total')
-            ->add('date_enregistrement')
-            ->add('id_membre')
-            ->add('id_vehicule')
-            ->add('id_agence')
+            // ->add('date_heure_depart')
+            // ->add('date_heure_fin')
+            // ->add('prix_total')
+            // ->add('date_enregistrement')
+            // ->add('id_membre')
+            // ->add('id_vehicule')
+            // ->add('id_agence')
         ;
     }
 

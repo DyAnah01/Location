@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Entity\Commande;
+use App\Form\AccueilType;
 use App\Repository\CommandeRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -12,26 +14,28 @@ use Symfony\Component\Routing\Annotation\Route;
 class AccueilController extends AbstractController
 {
     #[Route('/accueil', name: 'app_accueil')]
-    public function index(Request $request, EntityManagerInterface $manager, CommandeRepository $repoCo): Response
+    public function index(CommandeRepository $repoCo, Request $request, EntityManagerInterface $manager): Response
     {
         
         $c = $repoCo->findAllCommande();
         // dd($c);
-        // die;
+        $com = new Commande;
+        $form = $this->createForm(AccueilType::class, $com);
+        $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid())
+        {
+            $manager->persist($com);
+            $manager->flush();
+
+            return $this->redirectToRoute('app_accueil');
+        }
+
+
         return $this->render('accueil/index.html.twig', [
             'controller_name' => 'AccueilController',
             "c" => $c,
+            "formCo" => $form->createView(),
 
         ]);
     }
-
-
-    // #[Route("/gestion/afficher", name:"category_afficher")]
-    // public function category_afficher(CategoryRepository $repoCategory)
-    // {
-    //     $categories = $repoCategory->findAll();//SELECT * FROM category
-    //     return $this->render("admin_category/category_afficher.html.twig",[
-    //         "categories" => $categories
-    //     ]);
-    // }
 }
