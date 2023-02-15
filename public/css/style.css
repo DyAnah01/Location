@@ -17,6 +17,8 @@ h1{
 
 footer{
     border: solid 3px;
-    background-color: rgb(63, 196, 240);
-    color: black;
+    background-color: black;
+    color: white;
+    list-style: none;
+    text-align: center;
 }
