@@ -1,0 +1,22 @@
+{% extends "base.html.twig" %}
+{% block title %}
+    {{ parent() }}|Detail {{ ve.titre }}
+{% endblock title %}
+
+{% block body %}
+<h1 class="mt-5 text-center">{{ ve.titre }}</h1>
+<div class=" d-flex justify-content-center ">
+    
+    <img src="{{ ve.photo }}" alt="" width="450" height="400">
+</div>
+
+<div class="mt-5 text-center">
+    <p>{{ ve.description }}</p>
+    <p> <strong> Description : </strong>{{ve.modele}} {{ve.titre}} {{ve.marque}}</p> 
+</div>
+
+<div class="d-flex flex-row-reverse">
+    <a class="btn btn-success flex-end me-5" href="{{ path("app_vehicule") }}">Retour</a>
+</div>
+
+{% endblock body %}

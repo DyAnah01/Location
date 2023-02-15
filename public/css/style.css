@@ -17,3 +17,9 @@ h1{
     text-align: center;
 }
 
+footer{
+    border: solid 3px;
+    background-color: rgb(63, 196, 240);
+    color: black;
+}
+
