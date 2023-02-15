@@ -24,14 +24,12 @@ endblock %} {% block h1 %} Gestion des Vehicule {% endblock h1 %} {% block body
         </tr>
       </thead>
       <tbody class="bg-white">
-        {{ dump(vehicule) }}
+       
         {% for value in vehicule %}
         <tr>
           <th scope="row">{{ value.id }}</th>
           
           <td>{{ value.idAgence.ville }}</td>
-         
-
           <td>{{ value.titre }}</td>
           <td>{{ value.marque }}</td>
           <td>{{ value.modele }}</td>
