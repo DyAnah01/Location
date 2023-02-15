@@ -18,9 +18,12 @@ class MembreController extends AbstractController
     {
         $membre = $repoMembre->findAll();
         $mem = new Membre;
-        $form = $this->createForm(MembreType::class, $mem);
 
-        $form->handleRequest($request);
+     
+        $form = $this->createForm(MembreType::class,$mem);
+
+
+       $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid())
         {
@@ -83,4 +86,10 @@ class MembreController extends AbstractController
         return $this->redirectToRoute("app_membre");
 
     }
+
 }
+
+
+   
+
+

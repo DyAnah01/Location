@@ -9,17 +9,15 @@
 <table class="table">
   <thead>
     <tr>
-      <th scope="col">id membre</th>
+      <th scope="col"> ID membre</th>
       <th scope="col">pseudo</th>
       <th scope="col">nom</th>
       <th scope="col">prenom</th>
       <th scope="col">email</th>
       <th scope="col">civilite</th>
       <th scope="col">statut</th>
-      <th scope="col">date_enregistrement</th>
+      {# <th scope="col">date_enregistrement</th> #}
       <th scope="col">actions</th>
-      
-    </tr>
   </thead>
   <tbody>
     
@@ -32,15 +30,17 @@
       <td>{{value.email}}</td>
       <td>{{value.civilite}}</td>
       <td>{{value.statut}}</td>
+
       <td>{{value.dateEnregistrement | date('d:m:Y') }}</td>
       <td>
       <td> 
       {# Détail #}
          <a href ="{{path('detail', {'id': value.id} ) }}" class= "text-decoration-none">
-         <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="black" class="bi bi-search" viewBox="0 0 16 16">
+            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="black" class="bi bi-search" viewBox="0 0 16 16">
             <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
          </svg>
          </a>
+
           
       {# Update #}
          <a href ="{{path('membre_update', {'id': value.id} ) }}" class= "text-decoration-none">
@@ -50,15 +50,17 @@
          </svg>
          </a>
 
+
       {# Delete #}
          <a href ="{{path('supprimer_membre', {'id' : value.id }) }}"class= "text-decoration-none">
-         <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="black" class="bi bi-trash3" viewBox="0 0 16 16">
+          <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="black" class="bi bi-trash3" viewBox="0 0 16 16">
              <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>
          </svg>
          </a>   
       </td>
 
-    {% endfor %}   
+    </tr>    
+    {% endfor %}  
   </tbody>
 </table>
 <div class="container">
@@ -90,5 +92,33 @@
     </div>
   </div> 
 
+  <div class="container">
+    {{form_start(formMembre)}} 
+      <div class="">
+    {{form_row(formMembre.pseudo)}}
+      </div>
+    <div class "">
+    {{form_row(formMembre.mdp)}}
+    </div>
+    <div>
+     {{form_row(formMembre.nom)}}
+    </div>
+     <div>
+     {{form_row(formMembre.prenom)}}
+    </div>
+     <div>
+     {{form_row(formMembre.email)}}
+    </div>
+    <div>
+     {{form_row(formMembre.civilite)}}
+    <div>
+     {{form_row(formMembre.statut)}}
+    </div>
+
+    {{form_end(formMembre)}}
+    <div class ="text center">  
+     <input type="submit" class="btn btn-primary" value="Ajouter">
+    </div>
+  </div> 
 {% endblock %}
 
