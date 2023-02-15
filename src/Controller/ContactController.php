@@ -58,7 +58,7 @@ class ContactController extends AbstractController
         $manager->flush();
 
         $this->addFlash('success', "l'agence" . $contact->getId() . "a bien été supprimer");
-        return $this->redirectToRoute("contats_afficher");
+        return $this->redirectToRoute("contacts_afficher");
 }
 
 }
