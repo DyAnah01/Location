@@ -4,8 +4,9 @@
 
 {% block headerr %}
     {{form_start(formCo)}}
-    <div class="row justify-content-center align-items-end m-">
-        <div class="col-md-2 flex-column">
+    <div class="modif">
+    <div class="d-flex justify-content-center align-items-end">
+        <div class="flex-column text-white">
             <p class="f-5">Adresse de départ</p>
             <select class="form-select form-select-sm" aria-label=".form-select-sm example">
                 <option selected>Open this select menu</option>
@@ -14,18 +15,20 @@
                 <option value="3">Three</option>
             </select>
         </div>
-        <div class="col-md-2 flex-column">
+        <div class="d-flex flex-column text-white">
             <label for="birthdaytime">Début de location</label>
             <input type="datetime-local" id="birthdaytime" name="birthdaytime"> 
         </div>
-        <div class="col-md-2 flex-column">
+        <div class="d-flex flex-column text-white">
             <label for="birthdaytime">Fin de location</label>
             <input type="datetime-local" id="birthdaytime" name="birthdaytime">             
         </div>
-        <div class="col-md-2 flex-column">
+        <div class="d-flex flex-column text-white">
             <a href="" class="btn btn-success">Valider un véhicule</a>
         </div>
     </div>        
+    </div>
+        
     {{form_end(formCo)}}
 {% endblock headerr %}
 
