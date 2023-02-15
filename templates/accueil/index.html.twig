@@ -1,21 +1,67 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello AccueilController!{% endblock %}
-{% block stylesheets %}
-    <link rel="stylesheet" href="{{ asset("css/style.css") }}">
-    <H1>Bienvenue a bord</H1>
-{% for item in items %}
-    
-{% else %}
-    
-{% endfor %}
-<header>
+{% block title %}{{ parent() }}| Accueil{% endblock %}
 
-</header>
-{% endblock %}
+{% block headerr %}
+    {{form_start(formCo)}}
+    <div class="row justify-content-center align-items-end m-">
+        <div class="col-md-2 flex-column">
+            <p class="f-5">Adresse de départ</p>
+            <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+                <option selected>Open this select menu</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+            </select>
+        </div>
+        <div class="col-md-2 flex-column">
+            <label for="birthdaytime">Début de location</label>
+            <input type="datetime-local" id="birthdaytime" name="birthdaytime"> 
+        </div>
+        <div class="col-md-2 flex-column">
+            <label for="birthdaytime">Fin de location</label>
+            <input type="datetime-local" id="birthdaytime" name="birthdaytime">             
+        </div>
+        <div class="col-md-2 flex-column">
+            <a href="" class="btn btn-success">Valider un véhicule</a>
+        </div>
+    </div>        
+    {{form_end(formCo)}}
+{% endblock headerr %}
+
 {% block body %}
-
-
-   
-
+    <div class="my-4">
+        {% if c %}
+            {% for value in c %}
+                <div class="card mb-3 my-2" style="max-width: 540px;">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <img src="{{value.photo}}" class="img-fluid rounded-start mx-2" alt="Image voiture">
+                        </div>
+                        <div class="col-md-8 mb-2">
+                            <div class="card-body">
+                            <h5 class="card-title">{{value.titre}}</h5>
+                            <p class="card-text">{{value.description}}</p>
+                            <p class="card-text"><small class="text-muted">{{value.prix_journalier}}€ - {{value.titreAgences}}</small></p>
+                            </div>
+                            <div class="d-flex">
+                             <a href="#" class="btn btn-success flex-end">Réserver et payer</a>   
+                            </div>
+                            
+                        </div>
+                        
+                    </div>
+                </div>     
+            {% endfor %}
+        {% else %}
+            <h4 class="text-center mt-4 text-danger">
+                véhicule en voie de disparition
+            </h4>
+            
+        {% endif %}
+    </div>
 {% endblock %}
+
+
+
+

@@ -4,10 +4,12 @@
 }
 
 
- header{
-    background-image: url("/images/audiRsq8.jpeg");
-    width: 75rem;
-    height: 45rem;
+header{
+    background-image: url("../images/b.jpg");
+    height: 30rem;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position-y: bottom;
    
 } 
 
@@ -20,3 +22,4 @@ footer{
     background-color: rgb(63, 196, 240);
     color: black;
 }
+
