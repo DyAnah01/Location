@@ -16,7 +16,7 @@
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle text-black mx-3" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Gestion de Locations
-          </a>
+          </a>          
           <ul class="dropdown-menu bg-secondary mx-3">
             <li><a class="dropdown-item text-white" href="{{ path('app_agences') }}">Agences</a></li>
             <li><a class="dropdown-item text-white" href="{{ path('app_vehicule') }}">Vehicules</a></li>
@@ -30,9 +30,12 @@
         <li class="nav-item">
           <a class="nav-link text-black mx-3" href="">Mon Compte</a>
         </li>
-
-
       </ul>
+      {% if app.user %}
+        <div class="mb-3">
+            You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+        </div>
+        {% endif %}
     </div>
   </div>
 </nav>
