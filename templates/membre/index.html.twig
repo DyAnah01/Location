@@ -16,7 +16,7 @@
       <th scope="col">email</th>
       <th scope="col">civilite</th>
       <th scope="col">statut</th>
-      {# <th scope="col">date_enregistrement</th> #}
+      <th scope="col">date_enregistrement</th> 
       <th scope="col">actions</th>
   </thead>
   <tbody>
@@ -92,33 +92,5 @@
     </div>
   </div> 
 
-  <div class="container">
-    {{form_start(formMembre)}} 
-      <div class="">
-    {{form_row(formMembre.pseudo)}}
-      </div>
-    <div class "">
-    {{form_row(formMembre.mdp)}}
-    </div>
-    <div>
-     {{form_row(formMembre.nom)}}
-    </div>
-     <div>
-     {{form_row(formMembre.prenom)}}
-    </div>
-     <div>
-     {{form_row(formMembre.email)}}
-    </div>
-    <div>
-     {{form_row(formMembre.civilite)}}
-    <div>
-     {{form_row(formMembre.statut)}}
-    </div>
-
-    {{form_end(formMembre)}}
-    <div class ="text center">  
-     <input type="submit" class="btn btn-primary" value="Ajouter">
-    </div>
-  </div> 
 {% endblock %}
 
