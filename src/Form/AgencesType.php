@@ -20,7 +20,7 @@ class AgencesType extends AbstractType
                 'label'=> "Titre",
                 'required'=> false,
                     "attr" => [
-                        'placehoder'=> "Titre de l'agence",
+                        'placeholder'=> "Titre de l'agence",
                         "class" => 'form-control'
                     ]
             ])

@@ -27,13 +27,9 @@ class AgencesController extends AbstractController
             $manager->persist($ag);
             $manager->flush();
 
-            $this->addFlash('success', "L'Agence n°". $ag->getId() . "a bien été ajoutée");
-            return $this->redirectToRoute('agences/index.html.twig');
+            $this->addFlash('success', "L'Agence n° ". $ag->getId() . " a bien été ajoutée");
+            return $this->redirectToRoute('app_agences');
         }
-
-
-
-
         return $this->render('agences/index.html.twig', [
             'controller_name' => 'AgencesController',
             "agences" => $agences,
@@ -41,10 +37,45 @@ class AgencesController extends AbstractController
         ]);
     }
 
+    #[Route('/agences/detail/{id}', name: 'detail')]
+    public function agences_detail($id, AgencesRepository $repoA){
+        $agence = $repoA->find($id);
+        return $this->render("agences/agences_detail.html.twig",[
+            "ad" => $agence
+        ]);
+    }
 
+    #[Route('/agences/update/{id}', name: "update_agence")]
+    public function agences_modifier($id, AgencesRepository $repoAg, Request $request, EntityManagerInterface $manager)
+    {
+        $agence = $repoAg->find($id);
+        $form = $this->createForm(AgencesType::class, $agence);
+        $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid())
+        {
+            $manager->persist($agence);
+            $manager->flush();
 
-    // #[Route('/agences/showAdd', name: "showAdd")]
-    // public function agences_ajouter()
+            $this->addFlash("success", "L'agence N°" . $agence->getId() . " a bien été modifié");
+            return $this->redirectToRoute("app_agences");
+        }
+        return $this->render("agences/agences_update.html.twig",[
+            "formAgences" => $form->createView(),
+            "agence" => $agence
+        ]);
 
+    }
+
+    #[Route('/agences/supprimer/{id}', name:'supprimer_agence')]
+    public function agences_delete(Agences $agences, EntityManagerInterface $manager)
+    {
+        $idAg = $agences->getId();
+        $manager->remove($agences);
+        $manager->flush();
+
+        $this->addFlash("success", "L'agence N° $idAg a été supprimé");
+        return $this->redirectToRoute("app_agences");
+
+    }
 
 }
