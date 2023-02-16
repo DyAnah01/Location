@@ -4,30 +4,23 @@
 
 {% block headerr %}
     {{form_start(formCo)}}
-    <div class="modif">
-    <div class="d-flex justify-content-center align-items-end">
-        <div class="flex-column text-white">
-            <p class="f-5">Adresse de départ</p>
-            <select class="form-select form-select-sm" aria-label=".form-select-sm example">
-                <option selected>Open this select menu</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-            </select>
-        </div>
-        <div class="d-flex flex-column text-white">
-            <label for="birthdaytime">Début de location</label>
-            <input type="datetime-local" id="birthdaytime" name="birthdaytime"> 
-        </div>
-        <div class="d-flex flex-column text-white">
-            <label for="birthdaytime">Fin de location</label>
-            <input type="datetime-local" id="birthdaytime" name="birthdaytime">             
-        </div>
-        <div class="d-flex flex-column text-white">
-            <a href="" class="btn btn-success">Valider un véhicule</a>
-        </div>
-    </div>        
+    <div class="nothing">
+
     </div>
+
+        <div class="row justify-content-center modif">
+            <div class="col-md-3 flex-column align-items-end mil bg bg-light bg-opacity-75">
+                {{ form_row(formCo.id_agence) }}
+            </div>
+            <div class="col-md-3 d-flex flex-column align-items-end mil bg bg-light bg-opacity-75">
+                {{form_row(formCo.date_heure_depart)}}
+            </div>
+            <div class="col-md-3 d-flex flex-column align-items-end mil bg bg-light bg-opacity-75">
+                {{form_row(formCo.date_heure_fin)}}
+            </div>
+            <button class="col-md-3 text-white bg bg-success bg-opacity-75 mil">Valider un véhicule</button>
+        </div>        
+
         
     {{form_end(formCo)}}
 {% endblock headerr %}
@@ -63,6 +56,7 @@
             
         {% endif %}
     </div>
+
 {% endblock %}
 
 
