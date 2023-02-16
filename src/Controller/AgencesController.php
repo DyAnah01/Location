@@ -37,7 +37,7 @@ class AgencesController extends AbstractController
         ]);
     }
 
-    #[Route('/agences/detail/{id}', name: 'detail')]
+    #[Route('/agences/detail/{id}', name: 'detailAgence')]
     public function agences_detail($id, AgencesRepository $repoA){
         $agence = $repoA->find($id);
         return $this->render("agences/agences_detail.html.twig",[
