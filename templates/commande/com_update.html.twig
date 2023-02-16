@@ -1,0 +1,45 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+    {{ parent() }}|Modifier {{ commande.titre }}
+{% endblock title %}
+
+{% block h1 %}
+    
+{% endblock h1 %}
+
+{% block body %}
+    
+{{ form_start(formCommande) }}
+        <div class="row">
+            <div class="col-md-5">
+                <div class="col-md-10 mx-auto">
+                    {{ form_row(formCommande.date_heure_depart) }}
+                </div>
+                <div class="col-md-10 mx-auto">
+                    {{ form_row(formCommande.date_heure_fin) }}
+                </div>
+                <div class="col-md-10 mx-auto"> 
+                    {{ form_row(formCommande.prix_total) }}
+                </div>                
+            </div>
+                
+            <div class="col-md-5">
+                <div class="col-md-10 mx-auto">
+                    {{ form_row(formCommande.date_enregistrement) }}
+                </div>
+            </div>
+        </div>
+    
+        <div class="row justify-content-center">
+            <input type="submit" class="btn btn-success mt-3 col-md-6" value="Ajouter"> 
+
+        </div>
+    
+{{ form_end(formCommande) }}
+        
+        <div class="d-flex flex-row-reverse">
+            <a class="btn btn-success flex-end me-5" href="{{ path("app_commande") }}">Retour</a>   
+        </div>
+
+{% endblock body %}
