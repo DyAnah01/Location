@@ -27,15 +27,22 @@
         <li class="nav-item">
           <a class="nav-link text-white mx-3" href="{{ path('app_contact') }}">Contact</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link text-white mx-3" href="">Mon Compte</a>
-        </li>
+        <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Mon Compte
+          </button>
+          <ul class="dropdown-menu dropdown-menu-dark">
+            <li><a class="dropdown-item active" href="{{ path('registration') }}">S'inscrire</a></li>
+            <li><a class="dropdown-item" href=" {{ path('app_login') }} ">Se connecter</a></li>
+          </ul>
+        </div>
       </ul>
       {% if app.user %}
         <div class="mb-3">
             You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+            {# {{ dump(app.user.userIdentifier) }} #}
         </div>
-        {% endif %}
+      {% endif %}
     </div>
   </div>
 </nav>

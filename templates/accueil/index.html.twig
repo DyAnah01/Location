@@ -3,62 +3,95 @@
 {% block title %}{{ parent() }}| Accueil{% endblock %}
 
 {% block headerr %}
-    {{form_start(formCo)}}
-    <div class="nothing">
 
+<div class="nothing"></div>
+
+<form method="post">
+    <div class="row justify-content-center modif">
+        <div class="col-md-3 flex-column align-items-end mil bg bg-light bg-opacity-75">
+            <p class="mt-2 mb-1 pb-1">Adresse de départ</p>
+            <select class="form-select" aria-label="Default select example" name="ag">
+                {# <option selected></option> #}
+                {% for value in agences %}
+                <option value=" {{ value.id }} "> {{ value.titre }} </option>
+
+                {% endfor %}
+            </select>
+        </div>
+        <div class="col-md-3 d-flex flex-column align-items-end mil bg bg-light bg-opacity-75">
+            <label for="timeDebut">Début de location</label>
+            <input type="datetime-local" id="timeDebut" name="timeDebut">
+        </div>
+        <div class="col-md-3 d-flex flex-column align-items-end mil bg bg-light bg-opacity-75">
+            <label for="timeFin">Début de location</label>
+            <input type="datetime-local" id="timeFin" name="timeFin">
+        </div>
+        <button class="col-md-3 text-white bg bg-success bg-opacity-75 mil">Valider un véhicule</button>
     </div>
+</form>
 
-        <div class="row justify-content-center modif">
-            <div class="col-md-3 flex-column align-items-end mil bg bg-light bg-opacity-75">
-                {{ form_row(formCo.id_agence) }}
-            </div>
-            <div class="col-md-3 d-flex flex-column align-items-end mil bg bg-light bg-opacity-75">
-                {{form_row(formCo.date_heure_depart)}}
-            </div>
-            <div class="col-md-3 d-flex flex-column align-items-end mil bg bg-light bg-opacity-75">
-                {{form_row(formCo.date_heure_fin)}}
-            </div>
-            <button class="col-md-3 text-white bg bg-success bg-opacity-75 mil">Valider un véhicule</button>
-        </div>        
-
-        
-    {{form_end(formCo)}}
+{# {{ dump(filterVehicule) }} #}
+{# {{ dump(day) }} #}
 {% endblock headerr %}
 
+
 {% block body %}
-    <div class="my-4">
-        {% if c %}
-            {% for value in c %}
-                <div class="card mb-3 my-2" style="max-width: 540px;">
-                    <div class="row g-0">
-                        <div class="col-md-4">
-                            <img src="{{value.photo}}" class="img-fluid rounded-start mx-2" alt="Image voiture">
-                        </div>
-                        <div class="col-md-8 mb-2">
-                            <div class="card-body">
-                            <h5 class="card-title">{{value.titre}}</h5>
-                            <p class="card-text">{{value.description}}</p>
-                            <p class="card-text"><small class="text-muted">{{value.prix_journalier}}€ - {{value.titreAgences}}</small></p>
-                            </div>
-                            <div class="d-flex">
-                             <a href="#" class="btn btn-success flex-end">Réserver et payer</a>   
-                            </div>
-                            
-                        </div>
-                        
-                    </div>
-                </div>     
-            {% endfor %}
-        {% else %}
-            <h4 class="text-center mt-4 text-danger">
-                véhicule en voie de disparition
-            </h4>
+
+<div class="my-4">
+    {# {{ dump(app.user) }} #}
+    {% if v %}
+    {% for value in v %}
+    <div class="card mb-3 my-2" style="max-width: 540px;">
+        <div class="row g-0">
+            <div class="col-md-4">
+                <img src="{{value.photoVehicule}}" class="img-fluid rounded-start mx-2" alt="Image voiture">
+            </div>
+            <div class="col-md-8 mb-2">
+                <div class="card-body">
+                    <h5 class="card-title">{{value.titreVehicule}}</h5>
+                    <p class="card-text">{{value.descriptionVehicule}}</p>
+
+                    {% if app.user %}
+
+                    <p class="card-text"><small class="text-muted">{{value.prix_journalier}} € - {{value.titreAgences}}</small></p>
+                </div>
+                <div class="d-flex">
+                    <a href="{{ path('validation_commande', { 'idVehicule': value.idVehicule , 'idUser': app.user.id , 'idAgence': value.idAgence} ) }}"
+                        class="btn btn-success flex-end">Réserver et payer</a>
+                </div>
+                {% else %}
+                {% if filterVehicule == true %}
+                    {% set prix_total = value.prix_journalier * day %}
+                <p class="card-text"><small class="text-muted">{{prix_total}}€ ({{day}}j) -
+                    {{value.titreAgences}}</small></p>
+                    {% else %}
+                <p class="card-text"><small class="text-muted">{{value.prix_journalier}} € -
+                        {{value.titreAgences}}</small></p>                    
+                {% endif %}
+
+            </div>
+            <div id="liveAlertPlaceholder"></div>
+            <div class="d-flex">
+                <button type="button" class="btn btn-success flex-end" id="liveAlertBtn">Réserver et payer</button>
+                {# <a href="#" class="btn btn-success flex-end">Réserver et payer</a> #}             
+            </div>
             
-        {% endif %}
+            
+
+            {% endif %}
+
+
+        </div>
+
     </div>
+</div>
+{% endfor %}
+{% else %}
+<h4 class="text-center mt-4 text-danger">
+    véhicule en voie de disparition
+</h4>
+
+{% endif %}
+</div>
 
 {% endblock %}
-
-
-
-

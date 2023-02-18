@@ -2,12 +2,12 @@
 
 namespace App\Controller;
 
-use App\Entity\Commande;
+// use App\Entity\Commande;
 use App\Form\CommandeType;
 use App\Repository\CommandeRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\BrowserKit\Request;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -25,10 +25,13 @@ class CommandeController extends AbstractController
             
         ]);
     }
+
     #[Route('/commande/update/{id}', name:'update_commande')]
     public function commande_modifier($id, CommandeRepository $repoC, Request $request ,EntityManagerInterface $manager)
     {
         $commande = $repoC->findAllCommande($id);
+        // dd($commande);
+        // die;
         $form =$this->createForm(CommandeType::class, $commande);
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid())

@@ -6,7 +6,6 @@ use App\Entity\Agences;
 use App\Entity\Commande;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -31,7 +30,6 @@ class AccueilType extends AbstractType
                  "attr"=>[
                  "placeholder"=>"Fin de location",
                  "class"=>"m-0 p-0"
-
                  ]
             ])
             // ->add('date_heure_fin')

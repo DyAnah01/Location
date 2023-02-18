@@ -48,13 +48,15 @@ class CommandeRepository extends ServiceEntityRepository
 public function findAllCommande()
 {
     return $this->createQueryBuilder('c')
-            ->Select('v.id','v.titre','v.marque','v.modele','v.description','v.photo','v.prix_journalier','a.id', 'a.titre as titreAgences','a.adresse','a.ville','a.cp','a.description as descriptionAgences','a.photo as photoAgences','m.id','m.pseudo','m.nom','m.prenom','m.email','m.civilite','m.statut','m.date_enregistrement')
+            ->Select('v.id as idVehicule','v.titre','v.marque','v.modele','v.description','v.photo','v.prix_journalier','a.id as idAgence', 'a.titre as titreAgences','a.adresse','a.ville','a.cp','a.description as descriptionAgences','a.photo as photoAgences')
             ->innerJoin('App\Entity\Vehicule','v', Join::WITH, 'v.id = c.id_vehicule')            
             ->innerJoin('App\Entity\Agences', 'a' , Join::WITH, 'a.id = c.id_agence')
             ->innerJoin('App\Entity\Membre','m', Join::WITH, 'm.id = c.id_membre')
             ->getQuery()		
             ->getResult();
 }
+
+
 
 // public function findAllCommande()
 // {

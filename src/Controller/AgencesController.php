@@ -25,8 +25,9 @@ class AgencesController extends AbstractController
         if($form->isSubmitted() && $form->isValid())
         {
             $manager->persist($ag);
+            // insert into / update
             $manager->flush();
-
+            // execute
             $this->addFlash('success', "L'Agence n° ". $ag->getId() . " a bien été ajoutée");
             return $this->redirectToRoute('app_agences');
         }
