@@ -60,10 +60,7 @@ class AccueilController extends AbstractController
                 'end'=>$end->format('y-m-d H:i:s')
     
             ]);
-
         }
-
-
         return $this->render('accueil/index.html.twig', [
             'filterVehicule' => false,
             'controller_name' => 'AccueilController',
@@ -72,8 +69,8 @@ class AccueilController extends AbstractController
         ]);
     }
 
-    #[Route('/accueil/validation/{idVehicule}/{idUser}/{idAgence}', name: 'validation_commande')]
-    public function ajoutUserCommande($idVehicule, $idUser, $idAgence, VehiculeRepository $repoVehicule, UserRepository $repoUser, AgencesRepository $repoAgences, Request $request, EntityManagerInterface $manager)
+    #[Route('/accueil/validation/{idVehicule}/{idUser}/{idAgence}/{prix_total}/{start}/{end}', name: 'validation_commande')]
+    public function ajoutUserCommande($idVehicule, $idUser, $idAgence, $prix_total,$start,$end, VehiculeRepository $repoVehicule, UserRepository $repoUser, AgencesRepository $repoAgences, Request $request, EntityManagerInterface $manager)
     {
         // dd($c);
         // FK Commande
@@ -81,13 +78,14 @@ class AccueilController extends AbstractController
         $user = $repoUser->find($idUser);
         $agences = $repoAgences->find($idAgence);
 
+        
         $commande = new Commande;
         $commande->setIdVehicule($vehicule);
         $commande->setIdUser($user);
         $commande->setIdAgence($agences);
-        $commande->setDateHeureDepart(new \DateTime());
-        $commande->setDateHeureFin(new \DateTime());
-        $commande->setPrixTotal(2000);
+        $commande->setDateHeureDepart(new \DateTime($start));
+        $commande->setDateHeureFin(new \DateTime($end));
+        $commande->setPrixTotal($prix_total);
         $commande->setDateEnregistrement(new \DateTime());
         // $commande->setIdMembre($user);
 
@@ -96,6 +94,15 @@ class AccueilController extends AbstractController
         $manager->persist($commande);
         $manager->flush();
         return $this->redirectToRoute('app_accueil');
+    }
+
+
+
+
+    #[Route('/accueil/historiqueDeCommande', name:'historique')]
+    public function historique()
+    {
+        return $this->render('accueil/historique.html.twig');
     }
 
 

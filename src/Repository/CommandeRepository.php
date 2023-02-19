@@ -48,12 +48,19 @@ class CommandeRepository extends ServiceEntityRepository
 public function findAllCommande()
 {
     return $this->createQueryBuilder('c')
-            ->Select('v.id as idVehicule','v.titre','v.marque','v.modele','v.description','v.photo','v.prix_journalier','a.id as idAgence', 'a.titre as titreAgences','a.adresse','a.ville','a.cp','a.description as descriptionAgences','a.photo as photoAgences')
+            ->Select('c.id as idCommande','v.id as idVehicule','v.titre as titreVehicule','v.marque','v.modele','v.description as descriptionVehicule','v.photo as photoVehicule','v.prix_journalier','a.id as idAgence', 'a.titre as titreAgences','a.adresse','a.ville','a.cp','a.description as descriptionAgences','a.photo as photoAgences','c.date_heure_depart as dayStart', 'c.date_heure_fin as dayEnd', 'c.prix_total as totalPrice','c.date_enregistrement as dateEnregistrement','u.id as idUser','u.email as emailUser')
             ->innerJoin('App\Entity\Vehicule','v', Join::WITH, 'v.id = c.id_vehicule')            
             ->innerJoin('App\Entity\Agences', 'a' , Join::WITH, 'a.id = c.id_agence')
-            ->innerJoin('App\Entity\Membre','m', Join::WITH, 'm.id = c.id_membre')
+            // ->innerJoin('App\Entity\Membre','m', Join::WITH, 'm.id = c.id_membre')
+            ->innerJoin('App\Entity\User','u', Join::WITH,'u.id = c.id_user')
             ->getQuery()		
             ->getResult();
+}
+
+public function recupDate()
+{
+    // return $this->createQueryBuilder('c')
+    // SELECT DATE_FORMAT("2018-09-24", "Message du : %d/%m/%Y");
 }
 
 

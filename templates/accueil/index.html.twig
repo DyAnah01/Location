@@ -41,8 +41,14 @@
     {# {{ dump(app.user) }} #}
     {% if v %}
     {% for value in v %}
+
+
+    {# {{ dump(start) }}
+    {{ dump(end) }} #}
+    
     <div class="card mb-3 my-2" style="max-width: 540px;">
         <div class="row g-0">
+
             <div class="col-md-4">
                 <img src="{{value.photoVehicule}}" class="img-fluid rounded-start mx-2" alt="Image voiture">
             </div>
@@ -50,35 +56,41 @@
                 <div class="card-body">
                     <h5 class="card-title">{{value.titreVehicule}}</h5>
                     <p class="card-text">{{value.descriptionVehicule}}</p>
-
+                    {% if filterVehicule == true %}
+                    {% set prix_total = value.prix_journalier * day %}
+                    {# {{ dump(start) }}
+                    {{ dump(end) }} #}
                     {% if app.user %}
 
-                    <p class="card-text"><small class="text-muted">{{value.prix_journalier}} € - {{value.titreAgences}}</small></p>
+                    <p class="card-text"><small class="text-muted">{{prix_total}} € - {{value.titreAgences}}</small></p>
                 </div>
                 <div class="d-flex">
-                    <a href="{{ path('validation_commande', { 'idVehicule': value.idVehicule , 'idUser': app.user.id , 'idAgence': value.idAgence} ) }}"
+
+                    <a href="{{ path('validation_commande', { 'idVehicule': value.idVehicule , 'idUser': app.user.id , 'idAgence': value.idAgence , 'prix_total': prix_total , 'start' : start , 'end' : end} ) }}"
                         class="btn btn-success flex-end">Réserver et payer</a>
+
+                        {% else %}
+                        {% set prix_total = value.prix_journalier * 1 %}
+                    {% endif %}
                 </div>
                 {% else %}
+
                 {% if filterVehicule == true %}
-                    {% set prix_total = value.prix_journalier * day %}
-                <p class="card-text"><small class="text-muted">{{prix_total}}€ ({{day}}j) -
-                    {{value.titreAgences}}</small></p>
-                    {% else %}
-                <p class="card-text"><small class="text-muted">{{value.prix_journalier}} € -
-                        {{value.titreAgences}}</small></p>                    
+                    <p class="card-text"><small class="text-muted">{{prix_total}}€ ({{day}}j) - {{value.titreAgences}}</small></p>
+                {% else %}
+                    <p class="card-text"><small class="text-muted">{{value.prix_journalier}} € - {{value.titreAgences}}</small></p>
                 {% endif %}
 
             </div>
             <div id="liveAlertPlaceholder"></div>
             <div class="d-flex">
                 <button type="button" class="btn btn-success flex-end" id="liveAlertBtn">Réserver et payer</button>
-                {# <a href="#" class="btn btn-success flex-end">Réserver et payer</a> #}             
+                {# <a href="#" class="btn btn-success flex-end">Réserver et payer</a> #}
             </div>
-            
-            
-
             {% endif %}
+            {# {{ dump(prix_total) }}
+            {{ dump(day) }}
+            {{ dump(value.prix_journalier) }} #}
 
 
         </div>
