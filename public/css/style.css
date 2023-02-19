@@ -1,6 +1,6 @@
 *{
     margin: auto;
-    padding-top: 3px;
+    /* padding-top: 3px; */
 }
 
 
@@ -15,6 +15,18 @@ header{
 
 h1{
     text-align: center;
+}
+
+.modif{
+    width: 70%;
+    height: auto;
+    margin: auto;
+}
+.mil{
+    height: 78px;
+}
+.nothing{
+    height: 334px;
 }
 
 footer{

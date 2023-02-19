@@ -25,8 +25,9 @@ class AgencesController extends AbstractController
         if($form->isSubmitted() && $form->isValid())
         {
             $manager->persist($ag);
+            // insert into / update
             $manager->flush();
-
+            // execute
             $this->addFlash('success', "L'Agence n° ". $ag->getId() . " a bien été ajoutée");
             return $this->redirectToRoute('app_agences');
         }
@@ -37,7 +38,7 @@ class AgencesController extends AbstractController
         ]);
     }
 
-    #[Route('/agences/detail/{id}', name: 'detail')]
+    #[Route('/agences/detail/{id}', name: 'detailAgence')]
     public function agences_detail($id, AgencesRepository $repoA){
         $agence = $repoA->find($id);
         return $this->render("agences/agences_detail.html.twig",[

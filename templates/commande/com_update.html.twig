@@ -1,0 +1,16 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+    {{ parent() }}|Modifier {{ commande.titre }}
+{% endblock title %}
+
+{% block h1 %}
+    
+{% endblock h1 %}
+
+{% block body %} 
+        <div class="d-flex flex-row-reverse">
+            <a class="btn btn-success flex-end me-5" href="{{ path("app_commande") }}">Retour</a>   
+        </div>
+
+{% endblock body %}
