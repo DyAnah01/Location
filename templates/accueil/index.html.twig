@@ -1,21 +1,109 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello AccueilController!{% endblock %}
-{% block stylesheets %}
-    <link rel="stylesheet" href="{{ asset("css/style.css") }}">
-    <H1>Bienvenue a bord</H1>
-{% for item in items %}
-    
-{% else %}
-    
-{% endfor %}
-<header>
+{% block title %}{{ parent() }}| Accueil{% endblock %}
 
-</header>
-{% endblock %}
+{% block headerr %}
+
+<div class="nothing"></div>
+
+<form method="post">
+    <div class="row justify-content-center modif">
+        <div class="col-md-3 flex-column align-items-end mil bg bg-light bg-opacity-75">
+            <p class="mt-2 mb-1 pb-1">Adresse de départ</p>
+            <select class="form-select" aria-label="Default select example" name="ag">
+                {# <option selected></option> #}
+                {% for value in agences %}
+                <option value=" {{ value.id }} "> {{ value.titre }} </option>
+
+                {% endfor %}
+            </select>
+        </div>
+        <div class="col-md-3 d-flex flex-column align-items-end mil bg bg-light bg-opacity-75">
+            <label for="timeDebut">Début de location</label>
+            <input type="datetime-local" id="timeDebut" name="timeDebut">
+        </div>
+        <div class="col-md-3 d-flex flex-column align-items-end mil bg bg-light bg-opacity-75">
+            <label for="timeFin">Début de location</label>
+            <input type="datetime-local" id="timeFin" name="timeFin">
+        </div>
+        <button class="col-md-3 text-white bg bg-success bg-opacity-75 mil">Valider un véhicule</button>
+    </div>
+</form>
+
+{# {{ dump(filterVehicule) }} #}
+{# {{ dump(day) }} #}
+{% endblock headerr %}
+
+
 {% block body %}
 
+<div class="my-4">
+    {# {{ dump(app.user) }} #}
+    {% if v %}
+    {% for value in v %}
 
-   
+
+    {# {{ dump(start) }}
+    {{ dump(end) }} #}
+    
+    <div class="card mb-3 my-2" style="max-width: 540px;">
+        <div class="row g-0">
+
+            <div class="col-md-4">
+                <img src="{{value.photoVehicule}}" class="img-fluid rounded-start mx-2" alt="Image voiture">
+            </div>
+            <div class="col-md-8 mb-2">
+                <div class="card-body">
+                    <h5 class="card-title">{{value.titreVehicule}}</h5>
+                    <p class="card-text">{{value.descriptionVehicule}}</p>
+                    {% if filterVehicule == true %}
+                    {% set prix_total = value.prix_journalier * day %}
+                    {# {{ dump(start) }}
+                    {{ dump(end) }} #}
+                    {% if app.user %}
+
+                    <p class="card-text"><small class="text-muted">{{prix_total}} € - {{value.titreAgences}}</small></p>
+                </div>
+                <div class="d-flex">
+
+                    <a href="{{ path('validation_commande', { 'idVehicule': value.idVehicule , 'idUser': app.user.id , 'idAgence': value.idAgence , 'prix_total': prix_total , 'start' : start , 'end' : end} ) }}"
+                        class="btn btn-success flex-end">Réserver et payer</a>
+
+                        {% else %}
+                        {% set prix_total = value.prix_journalier * 1 %}
+                    {% endif %}
+                </div>
+                {% else %}
+
+                {% if filterVehicule == true %}
+                    <p class="card-text"><small class="text-muted">{{prix_total}}€ ({{day}}j) - {{value.titreAgences}}</small></p>
+                {% else %}
+                    <p class="card-text"><small class="text-muted">{{value.prix_journalier}} € - {{value.titreAgences}}</small></p>
+                {% endif %}
+
+            </div>
+            <div id="liveAlertPlaceholder"></div>
+            <div class="d-flex">
+                <button type="button" class="btn btn-success flex-end" id="liveAlertBtn">Réserver et payer</button>
+                {# <a href="#" class="btn btn-success flex-end">Réserver et payer</a> #}
+            </div>
+            {% endif %}
+            {# {{ dump(prix_total) }}
+            {{ dump(day) }}
+            {{ dump(value.prix_journalier) }} #}
+
+
+        </div>
+
+    </div>
+</div>
+{% endfor %}
+{% else %}
+<h4 class="text-center mt-4 text-danger">
+    véhicule en voie de disparition
+</h4>
+
+{% endif %}
+</div>
 
 {% endblock %}

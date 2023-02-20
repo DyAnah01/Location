@@ -1,16 +1,37 @@
 *{
     margin: auto;
-    padding-top: 3px;
+    /* padding-top: 3px; */
 }
 
 
- header{
-    background-image: url("/images/audiRsq8.jpeg");
-    width: 75rem;
-    height: 45rem;
+header{
+    background-image: url("../images/b.jpg");
+    height: 30rem;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position-y: bottom;
    
 } 
 
 h1{
     text-align: center;
 }
+
+.modif{
+    width: 70%;
+    height: auto;
+    margin: auto;
+}
+.mil{
+    height: 78px;
+}
+.nothing{
+    height: 334px;
+}
+
+footer{
+    border: solid 3px;
+    background-color: rgb(63, 196, 240);
+    color: black;
+}
+

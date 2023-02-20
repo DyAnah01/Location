@@ -18,7 +18,10 @@ class MembreController extends AbstractController
     {
         $membre = $repoMembre->findAll();
         $mem = new Membre;
+
+     
         $form = $this->createForm(MembreType::class,$mem);
+
 
        $form->handleRequest($request);
 
@@ -37,8 +40,56 @@ class MembreController extends AbstractController
             'membre'=> $membre,
             "formMembre"=> $form->createView(),
         ]);
+    
+
+    // Affihcer detail 
+       }
+
+    #[Route('/membre/detail/{id}', name: 'detail')]
+     public function membre_detail($id, MembreRepository $reposM){
+       $membre = $reposM->find($id);
+       return $this->render("membre/membre_detail.html.twig",[
+        "add" => $membre
+    ]);
+
     }
 
-   
+    #[Route('/membre/update/{id}', name: "membre_update")]
+    public function membre_modifier($id, membreRepository $reposMe, Request $request, EntityManagerInterface $manager)
+    {
+        $membre = $reposMe->find($id);
+        $form = $this->createForm(MembreType::class, $membre);
+        $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid())
+        {
+            $manager->persist($membre);
+            $manager->flush();
+
+            $this->addFlash("success", "membre N°" . $membre->getId() . " a bien été modifié");
+            return $this->redirectToRoute("app_membre");
+        }
+        return $this->render("membre/membre_update.html.twig",[
+            "formMembre" => $form->createView(),
+            "membre" => $membre
+        ]);
+
+    }
+
+    #[Route('/membre/suprimer/{id}', name:'supprimer_membre')]
+    public function membre_delete(Membre $membre, EntityManagerInterface $manager)
+    {
+        $idMe = $membre->getId();
+        $manager->remove($membre);
+        $manager->flush();
+
+        $this->addFlash("success", " Membre N° $idMe a été supprimé");
+        return $this->redirectToRoute("app_membre");
+
+    }
+
 }
+
+
+   
+
 
