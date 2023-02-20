@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class AgencesController extends AbstractController
 {
-    #[Route('/agences', name: 'app_agences')]
+    #[Route('/admin/agences', name: 'app_agences')]
     public function index(AgencesRepository $repoAgences, Request $request, EntityManagerInterface $manager): Response
     {
         $agences = $repoAgences->findAll();

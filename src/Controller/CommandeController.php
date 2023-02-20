@@ -15,7 +15,7 @@ use Symfony\Component\Validator\Constraints\DateTime;
 
 class CommandeController extends AbstractController
 {
-    #[Route('/commande', name: 'app_commande')]
+    #[Route('/admin/commande', name: 'app_commande')]
     public function index(CommandeRepository $repoCo, Request $request): Response
     {
         $commande = $repoCo->findAllCommande();
@@ -58,7 +58,7 @@ class CommandeController extends AbstractController
     //         "commande" => $commande,
     //     ]);
     // }
-    #[Route('/commande/supprimer/{id}', name:'supprimer_commande')]
+    #[Route('/admin/commande/supprimer/{id}', name:'supprimer_commande')]
     public function agences_delete(Commande $co, EntityManagerInterface $manager)
     {
         $idCommande = $co->getId();

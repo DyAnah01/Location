@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class VehiculeController extends AbstractController
 {
-    #[Route('/vehicule', name:'app_vehicule')]
+    #[Route('/admin/vehicule', name:'app_vehicule')]
     public function index(VehiculeRepository $repoVehicule, Request $request , EntityManagerInterface $manager): Response
     {
         $vh= new Vehicule ;
@@ -42,9 +42,7 @@ class VehiculeController extends AbstractController
 
     }
 
-    #[Route('/vehicule/detail/{id}', name: 'detail1')] // Detail
-
-
+    #[Route('/admin/vehicule/detail/{id}', name: 'detail')] // Detail
     public function vehicule_detail($id, VehiculeRepository $repoA){
         $vehicule = $repoA->find($id);
         return $this->render("vehicule/vehicule_detail.html.twig",[
@@ -52,7 +50,7 @@ class VehiculeController extends AbstractController
         ]);
     }
 
-    #[Route('/vehicule/update/{id}', name: "update_vehicule")] // update
+    #[Route('/admin/vehicule/update/{id}', name: "update_vehicule")] // update
     public function vehicule_modifier($id, VehiculeRepository $repoAg, Request $request, EntityManagerInterface $manager)
     {
         $vehicule = $repoAg->find($id);
@@ -73,7 +71,7 @@ class VehiculeController extends AbstractController
 
     }
 
-    #[Route('/vehicule/supprimer/{id}', name:'supprimer_vehicule')] // delete
+    #[Route('/admin/vehicule/supprimer/{id}', name:'supprimer_vehicule')] // delete
     public function vehicule_delete(Vehicule $vehicule, EntityManagerInterface $manager)
     {
         $idVe = $vehicule->getId();
