@@ -101,10 +101,25 @@ class AccueilController extends AbstractController
 
 
 
-    #[Route('/accueil/historiqueDeCommande', name:'historique')]
-    public function historique()
+    #[Route('/accueil/historiqueDeCommande/{id}', name:'historique')]
+    public function historique($id, CommandeRepository $repoCommande)
     {
-        return $this->render('accueil/historique.html.twig');
+        $idCommande = $repoCommande->findOneCommande($id);
+        return $this->render('accueil/historique.html.twig',[
+            'OneCommande' => $idCommande,
+        ]);
+    }
+
+    #[Route('/commande/supprimer/{id}', name:'deleteUserCommande')]
+    public function agences_delete(Commande $commande, EntityManagerInterface $manager)
+    {
+        $idCommande = $commande->getId();
+        $manager->remove($commande);
+        $manager->flush();
+
+        $this->addFlash("success", "L'agence N° $idCommande a été supprimé");
+        return $this->redirectToRoute("app_accueil");
+
     }
 
 

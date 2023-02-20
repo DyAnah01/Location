@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class MembreController extends AbstractController
 {
-    #[Route('/membre', name: 'app_membre')]
+    #[Route('/admin/membre', name: 'app_membre')]
     public function index(MembreRepository $repoMembre, Request $request, EntityManagerInterface $manager):Response
     {
         $membre = $repoMembre->findAll();
@@ -45,7 +45,7 @@ class MembreController extends AbstractController
     // Affihcer detail 
        }
 
-    #[Route('/membre/detail/{id}', name: 'detail')]
+    #[Route('/admin/membre/detail/{id}', name: 'detail')]
      public function membre_detail($id, MembreRepository $reposM){
        $membre = $reposM->find($id);
        return $this->render("membre/membre_detail.html.twig",[
@@ -54,7 +54,7 @@ class MembreController extends AbstractController
 
     }
 
-    #[Route('/membre/update/{id}', name: "membre_update")]
+    #[Route('/admin/membre/update/{id}', name: "membre_update")]
     public function membre_modifier($id, membreRepository $reposMe, Request $request, EntityManagerInterface $manager)
     {
         $membre = $reposMe->find($id);
@@ -75,7 +75,7 @@ class MembreController extends AbstractController
 
     }
 
-    #[Route('/membre/suprimer/{id}', name:'supprimer_membre')]
+    #[Route('/admin/membre/suprimer/{id}', name:'supprimer_membre')]
     public function membre_delete(Membre $membre, EntityManagerInterface $manager)
     {
         $idMe = $membre->getId();
