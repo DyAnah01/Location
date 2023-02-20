@@ -42,7 +42,7 @@ class VehiculeController extends AbstractController
 
     }
 
-    #[Route('/admin/vehicule/detail/{id}', name: 'detail')] // Detail
+    #[Route('/admin/vehicule/detail/{id}', name: 'detail1')] // Detail
     public function vehicule_detail($id, VehiculeRepository $repoA){
         $vehicule = $repoA->find($id);
         return $this->render("vehicule/vehicule_detail.html.twig",[
