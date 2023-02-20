@@ -41,6 +41,7 @@ class VehiculeController extends AbstractController
         ]);
 
     }
+
     #[Route('/admin/vehicule/detail/{id}', name: 'detail')] // Detail
     public function vehicule_detail($id, VehiculeRepository $repoA){
         $vehicule = $repoA->find($id);

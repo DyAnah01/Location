@@ -39,10 +39,11 @@ endblock %} {% block h1 %} Gestion des Vehicule {% endblock h1 %} {% block body
           </td>
           <td>{{ value.prixJournalier }}</td>
 
-          <td>
+          <td class="w-25">
             {# Détail #}
            
-                <a href="{{ path('detail', { 'id' : value.id } ) }}  " class="text-decoration-none">
+                <a href="{{ path('detail1', { 'id' : value.id } ) }}  " class="text-decoration-none">
+
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="25"
