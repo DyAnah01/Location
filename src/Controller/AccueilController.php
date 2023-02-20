@@ -57,7 +57,7 @@ class AccueilController extends AbstractController
                 "agences" => $agences,
                 'day'=>$intervalle->days,
                 'start'=>$start->format('y-m-d H:i:s'),
-                'end'=>$end->format('y-m-d H:i:s')
+                'end'=>$end->format('y-m-d H:i:s'),
     
             ]);
         }
@@ -78,6 +78,8 @@ class AccueilController extends AbstractController
         $user = $repoUser->find($idUser);
         $agences = $repoAgences->find($idAgence);
 
+        // $start = \DateTime::createFromFormat('Y-m-d\TH:i', $request->request->get('timeDebut'));
+        // $end = \DateTime::createFromFormat('Y-m-d\TH:i', $request->request->get('timeFin'));
         
         $commande = new Commande;
         $commande->setIdVehicule($vehicule);

@@ -15,7 +15,7 @@
 {% endfor %}
 
 
-{# {{ dump(commande) }} #}
+{{ dump(commande) }}
 
 {% if commande %}
 <div class="row justify-content-center my-5">
@@ -58,10 +58,10 @@
                         </div>
                     </td>
                     {# {{value.dayStart.format('d/m/Y')}} #}
-                    <td>{#{{value.dayStart}}#} {#DateDépart#}</td>
-                    <td> {#{{value.dayEnd}}#} {#DateFin#}</td>
+                    <td>{{value.dayStart | date('d:m:Y')}} {#DateDépart#}</td>
+                    <td> {{value.dayEnd | date('d:m:Y')}} {#DateFin#}</td>
                     <td>{{value.totalPrice}} €{#Prix Total#}</td>
-                    <td> {#{{value.dateEnregistrement}} #}</td> {#Date et heure d'enregistrement#}
+                    <td> {{value.dateEnregistrement | date('d:m:Y')}}</td> {#Date et heure d'enregistrement#}
 
                     <td class="w-25">
                         {# Détail #}
